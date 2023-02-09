@@ -1,0 +1,175 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartServiceTests/ShoppingCartServiceTest/ShoppingCartServiceTest.csproj": {}
+  },
+  "projects": {
+    "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartService/ShoppingCartService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartService/ShoppingCartService.csproj",
+        "projectName": "ShoppingCartService",
+        "projectPath": "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartService/ShoppingCartService.csproj",
+        "packagesPath": "/Users/samgold/.nuget/packages/",
+        "outputPath": "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartService/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/samgold/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.19.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-x64",
+              "version": "[5.0.17, 5.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartServiceTests/ShoppingCartServiceTest/ShoppingCartServiceTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartServiceTests/ShoppingCartServiceTest/ShoppingCartServiceTest.csproj",
+        "projectName": "ShoppingCartServiceTest",
+        "projectPath": "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartServiceTests/ShoppingCartServiceTest/ShoppingCartServiceTest.csproj",
+        "packagesPath": "/Users/samgold/.nuget/packages/",
+        "outputPath": "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartServiceTests/ShoppingCartServiceTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/samgold/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartService/ShoppingCartService.csproj": {
+                "projectPath": "/Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartService/ShoppingCartService.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.4.1, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

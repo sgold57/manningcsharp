@@ -1,0 +1,82 @@
+name: dockercompose10574853496565016281
+services:
+  mongo:
+    image: mongo
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 27017
+      published: "1234"
+      protocol: tcp
+    restart: always
+  mongo-express:
+    image: mongo-express
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 8081
+      published: "8081"
+      protocol: tcp
+    restart: always
+  shoppingcartservice:
+    build:
+      context: /Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL
+      dockerfile: ShoppingCartService/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: ShoppingCartService
+      target: base
+    container_name: ShoppingCartService
+    depends_on:
+      mongo:
+        condition: service_started
+    entrypoint:
+    - tail
+    - -f
+    - /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+      NUGET_FALLBACK_PACKAGES: ""
+    image: shoppingcartservice:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  "/app/bin/Debug/net5.0/ShoppingCartService.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    tty: true
+    volumes:
+    - type: bind
+      source: /Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL/ShoppingCartService
+      target: /app
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /Users/samgold/Desktop/manning_liveProjects/CSharpDevTesting/VS/SG_P1_FINAL
+      target: /src
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /Users/samgold/vsdbg/vs2017u5
+      target: /remote_debugger
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /Users/samgold/.nuget/packages/
+      target: /root/.nuget/packages
+      read_only: true
+      bind:
+        create_host_path: true
+networks:
+  default:
+    name: dockercompose10574853496565016281_default
