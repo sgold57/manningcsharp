@@ -28,10 +28,8 @@
   <ItemGroup>
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="ShippingCalculatorTests\" />
-    <None Remove="ShippingCalculatorTests\StandardCustomerTests\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ShippingCalculatorTests\" />
-    <Folder Include="ShippingCalculatorTests\StandardCustomerTests\" />
   </ItemGroup>
 </Project>

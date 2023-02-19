@@ -41,5 +41,6 @@ namespace ShoppingCartService.DataAccess.Entities
         {
             return HashCode.Combine(Id, CustomerId, (int) CustomerType, (int) ShippingMethod, ShippingAddress, Items);
         }
+
     }
 }

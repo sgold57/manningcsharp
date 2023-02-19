@@ -20,269 +20,130 @@ namespace ShoppingCartServiceTest
 
         }
 
-        [Fact]
-        public void CalculateTotals_StandardCustomer_NoCustomerDiscount()
+        [InlineData(CustomerType.Standard, 0)]
+        [InlineData(CustomerType.Premium, 10)]
+        [Theory]
+        public void CalculateTotals_DiscountExists_IfPremiumCustomer_DiscountDoesNotExist_IfStandardCustomer(
+            CustomerType customerType,
+            double expected)
         {
             var testMapConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
             IMapper testMapper = testMapConfig.CreateMapper();
 
+            Address originAddress = CreateAddress();
             ShippingCalculator testShippingCalculator = new ShippingCalculator();
-            CheckOutEngine testCheckOutEngine = new CheckOutEngine(testShippingCalculator, testMapper);
+            CheckOutEngine sut = new CheckOutEngine(testShippingCalculator, testMapper);
 
-            List<Item> testListOneItem = new List<Item>();
-            testListOneItem.Add(
-                new Item()
-                {
-                    ProductId = "1",
-                    ProductName = "Toilet Plunger",
-                    Price = 29.99,
-                    Quantity = 1
-                });
+            List<Item> testList = CreateItemList();
 
-            Address testShippingAddress = new Address()
-            {
-                Country = "USA",
-                City = "Milwaukee",
-                Street = "1408 Cusack Drive"
+            Address testShippingAddress = CreateAddress();
 
-            };
+            Cart testCart = CreateCart(
+                address: testShippingAddress,
+                customerType: customerType,
+                items: testList
+                );
 
-            Cart testCartStandardCustomerSameCountryOneItem = new Cart()
-            {
-                Id = "000",
-                CustomerId = "1",
-                CustomerType = CustomerType.Standard,
-                ShippingMethod = ShippingMethod.Standard,
-                ShippingAddress = testShippingAddress,
-                Items = testListOneItem
-            };
+            CheckoutDto actual = sut.CalculateTotals(testCart);
 
-            CheckoutDto actual = testCheckOutEngine.CalculateTotals(testCartStandardCustomerSameCountryOneItem);
-
-            Assert.Equal(0, actual.CustomerDiscount);
+            Assert.Equal(expected, actual.CustomerDiscount);
 
         }
 
-        [Fact]
-        public void CalculateTotals_StandardCustomer_TotalEqualsCostPlusShipping()
+        [InlineData(1, 102)]
+        [InlineData(2, 204)]
+        [Theory]
+        public void CalculateTotals_StandardCustomer(
+            uint itemQuantity,
+            double expected)
         {
             var testMapConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
             IMapper testMapper = testMapConfig.CreateMapper();
 
             ShippingCalculator testShippingCalculator = new ShippingCalculator();
-            CheckOutEngine testCheckOutEngine = new CheckOutEngine(testShippingCalculator, testMapper);
+            CheckOutEngine sut = new CheckOutEngine(testShippingCalculator, testMapper);
 
-            List<Item> testListOneItem = new List<Item>();
-            testListOneItem.Add(
-                new Item()
-                {
-                    ProductId = "1",
-                    ProductName = "Toilet Plunger",
-                    Price = 29.99,
-                    Quantity = 1
-                });
+            List<Item> testList = CreateItemList(itemQuantity);
 
-            Address testShippingAddress = new Address()
-            {
-                Country = "USA",
-                City = "Milwaukee",
-                Street = "1408 Cusack Drive"
+            Address testShippingAddress = CreateAddress();
 
-            };
+            Cart testCartStandardCustomer = CreateCart(
+                address: testShippingAddress,
+                customerType: CustomerType.Standard,
+                items: testList
+                );
 
-            Cart testCartStandardCustomerSameCountryOneItem = new Cart()
-            {
-                Id = "0340",
-                CustomerId = "231",
-                CustomerType = CustomerType.Standard,
-                ShippingMethod = ShippingMethod.Standard,
-                ShippingAddress = testShippingAddress,
-                Items = testListOneItem
-            };
+            CheckoutDto actual = sut.CalculateTotals(testCartStandardCustomer);
 
-            CheckoutDto actual = testCheckOutEngine.CalculateTotals(testCartStandardCustomerSameCountryOneItem);
-
-            Assert.Equal(31.99, actual.Total);
+            Assert.Equal(expected, actual.Total);
 
         }
 
-        [Fact]
-        public void CalculateTotals_StandardCustomerMoreThanOneItem_TotalEqualsCostPlusShipping()
+        [InlineData(1, 91.80)]
+        [InlineData(2, 183.60)]
+        [Theory]
+        public void CalculateTotals_PremiumCustomer(
+            uint itemQuantity,
+            double expected)
         {
             var testMapConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
             IMapper testMapper = testMapConfig.CreateMapper();
 
             ShippingCalculator testShippingCalculator = new ShippingCalculator();
-            CheckOutEngine testCheckOutEngine = new CheckOutEngine(testShippingCalculator, testMapper);
+            CheckOutEngine sut = new CheckOutEngine(testShippingCalculator, testMapper);
 
-            List<Item> testListTwoQuantityOneItem = new List<Item>();
-            testListTwoQuantityOneItem.Add(
-                new Item()
-                {
-                    ProductId = "728",
-                    ProductName = "Chair",
-                    Price = 31.50,
-                    Quantity = 2
-                });
+            List<Item> testList = CreateItemList(itemQuantity);
 
-            Address testShippingAddress = new Address()
-            {
-                Country = "USA",
-                City = "Trenton",
-                Street = "369 Maple Lane"
+            Address testShippingAddress = CreateAddress();
 
-            };
+            Cart testCartStandardCustomer = CreateCart(
+                address: testShippingAddress,
+                customerType: CustomerType.Premium,
+                items: testList
+                );
 
-            Cart testCartStandardCustomerSameCountryTwoQuantityOneItem = new Cart()
-            {
-                Id = "9663",
-                CustomerId = "143",
-                CustomerType = CustomerType.Standard,
-                ShippingMethod = ShippingMethod.Standard,
-                ShippingAddress = testShippingAddress,
-                Items = testListTwoQuantityOneItem
-            };
+            CheckoutDto actual = sut.CalculateTotals(testCartStandardCustomer);
 
-            CheckoutDto actual = testCheckOutEngine.CalculateTotals(testCartStandardCustomerSameCountryTwoQuantityOneItem);
-
-            Assert.Equal(67, actual.Total);
-        }
-
-        [Fact]
-        public void CalculateTotals_PremiumCustomer_HasCustomerDiscount()
-        {
-            var testMapConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-            IMapper testMapper = testMapConfig.CreateMapper();
-
-            ShippingCalculator testShippingCalculator = new ShippingCalculator();
-            CheckOutEngine testCheckOutEngine = new CheckOutEngine(testShippingCalculator, testMapper);
-
-            List<Item> testListOneItem = new List<Item>();
-            testListOneItem.Add(
-                new Item()
-                {
-                    ProductId = "2",
-                    ProductName = "Coffee Maker",
-                    Price = 42.75,
-                    Quantity = 1
-                });
-
-            Address testShippingAddress = new Address()
-            {
-                Country = "USA",
-                City = "Trenton",
-                Street = "369 Maple Lane"
-
-            };
-
-            Cart testCartPremiumCustomerStandardShippingOneItem = new Cart()
-            {
-                Id = "001",
-                CustomerId = "98",
-                CustomerType = CustomerType.Premium,
-                ShippingMethod = ShippingMethod.Standard,
-                ShippingAddress = testShippingAddress,
-                Items = testListOneItem
-            };
-
-            CheckoutDto actual = testCheckOutEngine.CalculateTotals(testCartPremiumCustomerStandardShippingOneItem);
-
-            Assert.Equal(10, actual.CustomerDiscount);
+            Assert.Equal(expected, actual.Total);
 
         }
 
-        [Fact]
-        public void CalculateTotals_PremiumCustomer_OneItemTotalEqualsCostPlusShippingMinusDiscount()
+        private List<Item> CreateItemList(
+            uint quantity = 1,
+            double price = 100)
         {
-            var testMapConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-            IMapper testMapper = testMapConfig.CreateMapper();
+            List<Item> newList = new List<Item>();
+            newList.Add(new Item { Quantity = quantity, Price = price });
 
-            ShippingCalculator testShippingCalculator = new ShippingCalculator();
-            CheckOutEngine testCheckOutEngine = new CheckOutEngine(testShippingCalculator, testMapper);
-
-            List<Item> testListOneItem = new List<Item>();
-            testListOneItem.Add(
-                new Item()
-                {
-                    ProductId = "5",
-                    ProductName = "Hundred Dollar Bill",
-                    Price = 100,
-                    Quantity = 1
-                });
-
-            Address testShippingAddress = new Address()
-            {
-                Country = "USA",
-                City = "Trenton",
-                Street = "369 Maple Lane"
-
-            };
-
-            Cart testCartPremiumCustomerStandardShippingOneItem = new Cart()
-            {
-                Id = "645",
-                CustomerId = "157",
-                CustomerType = CustomerType.Premium,
-                ShippingMethod = ShippingMethod.Standard,
-                ShippingAddress = testShippingAddress,
-                Items = testListOneItem
-            };
-
-            CheckoutDto actual = testCheckOutEngine.CalculateTotals(testCartPremiumCustomerStandardShippingOneItem);
-
-            Assert.Equal(91.80, actual.Total);
-
+            return newList;
         }
 
-        [Fact]
-        public void CalculateTotals_PremiumCustomer_MoreThanOneItemTotalEqualsCostPlusShippingMinusDiscount()
+        private Address CreateAddress(
+            string country = "USA",
+            string city = "Milwaukee",
+            string street = "123 Maple Lane")
         {
-            var testMapConfig = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-            IMapper testMapper = testMapConfig.CreateMapper();
-
-            ShippingCalculator testShippingCalculator = new ShippingCalculator();
-            CheckOutEngine testCheckOutEngine = new CheckOutEngine(testShippingCalculator, testMapper);
-
-            List<Item> testListTwoItems = new List<Item>();
-            testListTwoItems.Add(
-                new Item()
-                {
-                    ProductId = "867",
-                    ProductName = "FatHead",
-                    Price = 32,
-                    Quantity = 1
-                });
-            testListTwoItems.Add(
-                new Item()
-                {
-                    ProductId = "3245",
-                    ProductName = "BobbleHead",
-                    Price = 20,
-                    Quantity = 1
-                });
-
-            Address testShippingAddress = new Address()
+            return new Address()
             {
-                Country = "USA",
-                City = "Trenton",
-                Street = "369 Maple Lane"
-
+                Country = country,
+                City = city,
+                Street = street
             };
+        }
 
-            Cart testCartPremiumCustomerStandardShippingTwoItems = new Cart()
+        private Cart CreateCart(
+            Address address,
+            List<Item> items,
+            CustomerType customerType,
+            ShippingMethod shippingMethod = ShippingMethod.Standard)
+        {
+            return new Cart()
             {
-                Id = "645",
-                CustomerId = "157",
-                CustomerType = CustomerType.Premium,
-                ShippingMethod = ShippingMethod.Standard,
-                ShippingAddress = testShippingAddress,
-                Items = testListTwoItems
+                CustomerType = customerType,
+                ShippingMethod = shippingMethod,
+                ShippingAddress = address,
+                Items = items
             };
-
-            CheckoutDto actual = testCheckOutEngine.CalculateTotals(testCartPremiumCustomerStandardShippingTwoItems);
-
-            Assert.Equal(50.40, actual.Total);
-
         }
 
     }

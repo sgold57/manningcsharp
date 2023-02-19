@@ -1,70 +1,48 @@
 ﻿<Properties StartupConfiguration="{919966D2-A3E5-490D-B0EA-75F18E22F745}|Default">
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ShoppingCartService PreferredExecutionTarget="/Applications/Firefox.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ShoppingCartServiceTests/ShoppingCartServiceTest/CheckOutEngineTests.cs">
+  <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ShoppingCartService/DataAccess/Entities/Cart.cs">
     <Files>
-      <File FileName="ShoppingCartService/BusinessLogic/CheckOutEngine.cs" Line="35" Column="30" />
-      <File FileName="ShoppingCartService/DataAccess/Entities/Item.cs" />
-      <File FileName="ShoppingCartService/Controllers/Models/ShoppingCartDto.cs" />
-      <File FileName="ShoppingCartService/BusinessLogic/ICheckOutEngine.cs" />
-      <File FileName="ShoppingCartService/Mapping/MappingProfile.cs" />
-      <File FileName="docker-compose.dcproj" />
-      <File FileName="ShoppingCartService/Dockerfile" />
-      <File FileName="ShoppingCartService/appsettings.Development.json" />
-      <File FileName="ShoppingCartService/Program.cs" />
-      <File FileName="ShoppingCartService/ShoppingCartService.xml" />
-      <File FileName="ShoppingCartService/Startup.cs" />
-      <File FileName="ShoppingCartService/Controllers/Models/CustomerDto.cs" />
-      <File FileName="ShoppingCartService/DataAccess/Entities/Cart.cs" />
-      <File FileName="ShoppingCartService/ShoppingCartService/ShoppingCartService.xml" />
-      <File FileName="ShoppingCartService/Models/Address.cs" />
-      <File FileName="ShoppingCartService/Models/CustomerType.cs" />
-      <File FileName="ShoppingCartService/Models/ShippingMethod.cs" />
-      <File FileName="ShoppingCartService/DataAccess/ShoppingCartRepository.cs" />
-      <File FileName="ShoppingCartService/DataAccess/IShoppingCartRepository.cs" />
-      <File FileName="ShoppingCartServiceTests/ShoppingCartServiceTest/ShippingCalculatorTests.cs" Line="1" Column="1" />
-      <File FileName="ShoppingCartService/Controllers/ShoppingCartController.cs" />
-      <File FileName="ShoppingCartService/Properties/launchSettings.json" />
-      <File FileName="ShoppingCartService/BusinessLogic/ShippingCalculator.cs" />
-      <File FileName="ShoppingCartService/BusinessLogic/Exceptions/InvalidInputException.cs" />
-      <File FileName="ShoppingCartService/BusinessLogic/Exceptions/ItemNotFoundInCartException.cs" />
-      <File FileName="ShoppingCartServiceTests/ShoppingCartServiceTest/CheckOutEngineTests.cs" Line="20" Column="13" />
-      <File FileName="ShoppingCartServiceTests/ShoppingCartServiceTest/Usings.cs" Line="1" Column="1" />
-      <File FileName="ShoppingCartServiceTests/ShoppingCartServiceTest/AddressValidatorTests.cs" Line="1" Column="1" />
+      <File FileName="ShoppingCartServiceTests/ShoppingCartServiceTest/ShippingCalculatorTests/PremiumCustomerTests/PremiumCustomerPriorityShippingTests.cs" Line="82" Column="49" />
+      <File FileName="ShoppingCartServiceTests/ShoppingCartServiceTest/ShippingCalculatorTests/StandardCustomerTests/StandardCustomerStandardShippingTests.cs" Line="33" Column="110" />
+      <File FileName="ShoppingCartServiceTests/ShoppingCartServiceTest/CheckOutEngineTests.cs" Line="1" Column="1" />
+      <File FileName="ShoppingCartService/DataAccess/Entities/Cart.cs" Line="44" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="EStore" expanded="True">
             <Node name="ShoppingCartService" expanded="True">
-              <Node name="BusinessLogic" expanded="True">
-                <Node name="Exceptions" expanded="True" />
-              </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="Models" expanded="True" />
-              </Node>
               <Node name="DataAccess" expanded="True">
-                <Node name="Entities" expanded="True" />
+                <Node name="Entities" expanded="True">
+                  <Node name="Cart.cs" selected="True" />
+                </Node>
               </Node>
-              <Node name="Mapping" expanded="True" />
             </Node>
             <Node name="ShoppingCartServiceTest" expanded="True">
-              <Node name="CheckOutEngineTests.cs" selected="True" />
+              <Node name="ShippingCalculatorTests" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="EStore" expanded="True" selected="True" />
+          <Node name="EStore" expanded="True">
+            <Node name="ShoppingCartServiceTest" expanded="True">
+              <Node name="ShoppingCartServiceTest" expanded="True">
+                <Node name="PremiumCustomerPriorityShippingTests" expanded="True" />
+                <Node name="StandardCustomerTests" expanded="True" selected="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ShoppingCartService PreferredExecutionTarget="/Applications/Firefox.app" />
 </Properties>
